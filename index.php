@@ -37,10 +37,21 @@
             <div class="row">
 
               <div class="col-md-12 pull-left form-inline">
-                    <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;">
+                    
+                    <!--
+                    <div id="date" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;">
                         <i class="fa fa-calendar"></i>&nbsp;
                         <span></span> <i class="fa fa-caret-down"></i>
                     </div>
+                    -->
+
+                    <--
+                    <div class="form-group filter">
+                      <input type="text" name="date" value="" class="form-control filter-select input-sm" autocomplete="off" id="date" style="width: 220px;">
+                    </div>
+                    -->
+
+
               </div>
             </div>
 

@@ -1,31 +1,25 @@
  $(document).ready(function() {
 
-    var from = moment();
+	var from = moment();
     var to = moment();
 
-    $('#reportrange').daterangepicker({
-      "startDate": from,
-      "endDate": to,
-      "maxDate": moment(),
-      locale: {
-        "format": "DD-MM-YYYY",
-        "separator": " - ",
-      },
-    });
 
-    $('#reportrange span').html(from.format('DD-MM-YYYY') + ' to ' + to.format('DD-MM-YYYY'));
+	$('#date').daterangepicker({
+	      "startDate": from,
+	      "endDate": to,
+	      "maxDate": moment(),
+	      locale: {
+	        "format": "DD-MM-YYYY",
+	        "separator": " to ",
+	      },
+	});
+
+	//daterange
+	date=$('#date').val();
 
  	var table = $('#tablaBoletas').DataTable( {
 	    "ajax":{
-	        "url": "./models/voucher.php",
-	        "data": {
-	        	"from": from.format('YYYY-MM-DD'),
-	        	"to": to.format('YYYY-MM-DD'),
-	        },
-	        /*"data": function(d){
-        	   d.from = from.format('YYYY-MM-DD'),
-        	   d.to = to.format('YYYY-MM-DD')
-        	},*/
+	        "url": "./models/voucher.php?daterange="+date,
 	        "dataSrc":"",
 	    },
 		"pageLength": 25,
@@ -44,27 +38,22 @@
 	      },
 	     ]
 	});
+
+
 });
 
-$('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-	//console.log(ev);
-	//console.log(picker);
-	//console.log(from);
-	//$('#reportrange span').html(from.format('MMMM D, YYYY') + ' - ' + to.format('MMMM D, YYYY'));
-	//console.log(picker);
-	//$("#tablaBoletas").DataTable().ajax.reload();
-  	//reload_datatable(from, to);
+$('#date').on('apply.daterangepicker', function(ev, picker) {
+	date=$('#date').val();
+	reload_datatable(date)
 });
-
-
 
 /**
  * Refresh datatable
  * @return {[type]}        [description]
  */
-function reload_datatable()
+function reload_datatable(date)
 {
-	//table.ajax.reload();
-	new_url="./models/voucher.php";
+	console.log("RELOAD" + date)
+	new_url="./models/voucher.php?daterange="+date;
 	$('#tablaBoletas').DataTable().ajax.url(new_url).load();
 }

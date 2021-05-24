@@ -31,13 +31,34 @@ class Voucher extends Connection{
         $data = json_encode($data, true);
         print_r($data);   
     }
+
+    public function getUrlResponse()
+    {
+        $url = $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+        $components = parse_url($url);
+        parse_str($components['query'], $results);
+
+        return $results;
+    }
 }
 
-$voucher = new Voucher();
+$url = $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+$components = parse_url($url);
+parse_str($components['query'], $results);
+//print_r($results);
+//$url_response = getUrlResponse();
+//print_r($url_response)
 
-$from = $_GET['from'];
-$to = $_GET['to'];
-//print_r($from); 
-//print_r($to); 
-//print_r($from .' - ' . $to); 
+$date_range = explode("to", $results['daterange']);
+$from = $date_range[0];
+$to = $date_range[1];
+//print_r( $from);
+//print_r( $to);
+//print_r( $form . " a rango ".  $to);
+
+
+//print_r($results['daterange']);
+
+
+$voucher = new Voucher();
 $voucher->getVoucherReport($from, $to);
