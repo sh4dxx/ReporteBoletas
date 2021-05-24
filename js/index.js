@@ -1,15 +1,14 @@
  $(document).ready(function() {
 
-	var from = moment();
+	var from = moment().startOf('month');
     var to = moment();
-
 
 	$('#date').daterangepicker({
 	      "startDate": from,
 	      "endDate": to,
 	      "maxDate": moment(),
 	      locale: {
-	        "format": "DD-MM-YYYY",
+	        "format": "YYYY-MM-DD",
 	        "separator": " to ",
 	      },
 	});
@@ -24,16 +23,16 @@
 	    },
 		"pageLength": 25,
 	    "columns":[
-	        {"data": "emp_rut"},
-	        {"data": "emp_nombre"},
 	        {"data": "bol_fecha"},
-	        {"data": "bol_cantidad"},
+	        {"data": "suc_id"},
+	        {"data": "id_boleta"},
 	        {"data": "bol_estado"},
-	        {"defaultContent": "<button type='button' title='' class='btn btn-success btn-sm'><i class='fas fa-running' aria-hidden='true'></i></button><button type='button' title='' class='btn btn-danger btn-sm'><i class='fas fa-skull' aria-hidden='true'></i></button>"}
+	        //{"defaultContent": "<button type='button' title='' class='btn btn-success btn-sm'><i class='fas fa-running' aria-hidden='true'></i></button><button type='button' title='' class='btn btn-danger btn-sm'><i class='fas fa-skull' aria-hidden='true'></i></button>"}
+	        {"defaultContent": "--"}
 	    ],
 	     "columnDefs": [
 	      {
-	        "targets": [0,2,3,4,5],
+	        "targets": [0,1,2,3],
 	        "className": "text-center",
 	      },
 	     ]
@@ -53,7 +52,7 @@ $('#date').on('apply.daterangepicker', function(ev, picker) {
  */
 function reload_datatable(date)
 {
-	console.log("RELOAD" + date)
+	console.log("R " + date)
 	new_url="./models/voucher.php?daterange="+date;
 	$('#tablaBoletas').DataTable().ajax.url(new_url).load();
 }

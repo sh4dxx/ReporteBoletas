@@ -11,25 +11,20 @@ class Voucher extends Connection{
         
         $connection = $this->connect();
 
-        $query = "SELECT 
-        a.emp_rut,
-        a.bol_fecha,
-        b.emp_nombre,
-        COUNT(a.id) AS bol_cantidad,
-        bol_estado
+        $query = " SELECT 
+        a.bol_fecha, suc_id, a.id As id_boleta ,bol_estado
         FROM bol_consumo_folio a 
         LEFT JOIN bol_empresa b USING(emp_rut) 
-        LEFT JOIN sys_empresa  c ON a.emp_rut=c.emp_rut
-        WHERE bol_estado ='PENDIENTE'
-        AND a.bol_fecha <= '". $from ."'
-        AND a.bol_fecha >= '". $to   ."'
-        GROUP BY a.emp_rut, bol_fecha, bol_estado";   
+        LEFT JOIN sys_empresa c ON a.emp_rut=c.emp_rut 
+        WHERE a.bol_fecha  BETWEEN '". $from ."' AND '". $to ."'
+        AND a.emp_rut = '76427624-8'";
 
         $result = $connection->prepare($query);
         $result->execute();
         $data= $result->fetchAll(PDO::FETCH_ASSOC);
         $data = json_encode($data, true);
-        print_r($data);   
+        print_r($data);
+
     }
 
     public function getUrlResponse()

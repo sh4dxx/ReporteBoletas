@@ -45,12 +45,11 @@
                     </div>
                     -->
 
-                    <--
+               
                     <div class="form-group filter">
                       <input type="text" name="date" value="" class="form-control filter-select input-sm" autocomplete="off" id="date" style="width: 220px;">
                     </div>
-                    -->
-
+               
 
               </div>
             </div>
@@ -65,12 +64,11 @@
                      <table class="table table-striped table-bordered table-hover" id="tablaBoletas">
                         <thead>
                            <tr>
-                              <th width="10%"><center>Rut Empresa</center></th>
-                              <th><center>Nombre Empresa</center></th>
                               <th><center>Fecha boleta</center></th>                                
-                              <th><center>Cantidad boletas</center></th>  
+                              <th><center>Nro Sucursal</center></th>  
+                              <th><center>Nro Boleta</center></th>  
                               <th><center>Estado</center></th>
-                              <th><center>Acciones</center></th>
+                              <th><center>Reenvio</center></th>
                           </tr>
                         </thead>
                         <tbody>
