@@ -74,7 +74,7 @@ $url_response = $voucher->getUrlResponse();
 //Validaciones
 $validations = $voucher->getQueryValidations($url_response);
 if (!$validations) {
-    print_r([]);
+    print_r('No se pudieron validar datos');
     return true;
 }
 
