@@ -26,6 +26,8 @@
   </head>
   <body>
     
+    <input type="text" id="business_rut" value="76427624-8">
+
     <div class="container" style="max-width: 80%">
 
       <div class="content-heading">
@@ -33,21 +35,25 @@
       </div>
       <div class="clearfix" style="margin-bottom: 1em;">
         <div class="pull-left ">
-
             <div class="row">
-
               <div class="col-md-12 pull-left form-inline">
-                    
                     <!--
                     <div id="date" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;">
                         <i class="fa fa-calendar"></i>&nbsp;
                         <span></span> <i class="fa fa-caret-down"></i>
                     </div>
-                    -->
-
-               
+                    -->               
                     <div class="form-group filter">
-                      <input type="text" name="date" value="" class="form-control filter-select input-sm" autocomplete="off" id="date" style="width: 220px;">
+                       <label  class="control-label" for="voucher_status">Fecha</label>
+                       <input type="text" name="date" value="" class="form-control filter-select input-sm" autocomplete="off" id="date" style="width: 220px;">
+                    </div>
+                    <div class="form-group filter">
+                       <label  class="control-label" for="voucher_status">Estado</label>
+                       <select id="voucher_status" class="form-control filter-select input-sm" style="width: 200px;">
+                          <option value="0">All</option>  
+                          <option value="1">Enviado</option>  
+                          <option value="2">Pendiente</option>  
+                       </select>
                     </div>
                
 

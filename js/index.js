@@ -13,12 +13,14 @@
 	      },
 	});
 
-	//daterange
+	//parameters
+	rut=$('#business_rut').val();
 	date=$('#date').val();
+	voucher_status=$('#voucher_status').val();
 
  	var table = $('#tablaBoletas').DataTable( {
 	    "ajax":{
-	        "url": "./models/voucher.php?daterange="+date,
+	        "url": "./models/voucher.php?rut="+rut+"&daterange="+date+"&status="+voucher_status,
 	        "dataSrc":"",
 	    },
 		"pageLength": 25,
@@ -27,12 +29,11 @@
 	        {"data": "suc_id"},
 	        {"data": "id_boleta"},
 	        {"data": "bol_estado"},
-	        //{"defaultContent": "<button type='button' title='' class='btn btn-success btn-sm'><i class='fas fa-running' aria-hidden='true'></i></button><button type='button' title='' class='btn btn-danger btn-sm'><i class='fas fa-skull' aria-hidden='true'></i></button>"}
 	        {"defaultContent": "--"}
 	    ],
 	     "columnDefs": [
 	      {
-	        "targets": [0,1,2,3],
+	        "targets": [0,1,2,3,4],
 	        "className": "text-center",
 	      },
 	     ]
@@ -43,16 +44,25 @@
 
 $('#date').on('apply.daterangepicker', function(ev, picker) {
 	date=$('#date').val();
-	reload_datatable(date)
+	rut=$('#business_rut').val();
+	voucher_status=$('#voucher_status').val();
+	reload_datatable(rut,date,voucher_status);
+});
+
+$('#voucher_status').on('change', function (e) {
+	date=$('#date').val();
+	rut=$('#business_rut').val();
+    voucher_status = $('#voucher_status').val();
+  	reload_datatable(rut,date,voucher_status);
 });
 
 /**
  * Refresh datatable
  * @return {[type]}        [description]
  */
-function reload_datatable(date)
+function reload_datatable(rut,date,voucher_status)
 {
-	console.log("R " + date)
-	new_url="./models/voucher.php?daterange="+date;
+	console.log(date)
+	new_url="./models/voucher.php?rut="+rut+"&daterange="+date+"&status="+voucher_status;
 	$('#tablaBoletas').DataTable().ajax.url(new_url).load();
 }
